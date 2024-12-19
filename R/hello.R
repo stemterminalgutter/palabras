@@ -1,4 +1,4 @@
-huge_word_list <- readLines("Your/Path/Here/words_alpha.txt")
+huge_word_list <- readLines("~/Library/CloudStorage/OneDrive-IndianaUniversity/Getting Started in R/Final Biostats Project/words_alpha.txt")
 
 file.path(getwd(), "./words_alpha.txt")
 #' Random Word Generator
@@ -6,7 +6,7 @@ file.path(getwd(), "./words_alpha.txt")
 #' @param n The random word
 #' @param huge_word_list
 #'
-#' @returns The output from \code(\link(print))
+#' @returns The output from \code{\link{print}}
 #' @export
 #'
 #' @examples
@@ -21,18 +21,27 @@ print(random_words)
 text <- readLines("Your/Path/Here/crime_and_punishment.txt")
 
 file.path(getwd(), "./crime_and_punishment.txt")
-# Combine lines into a single string
-text <- paste(text, collapse = "")
 
-# Convert text to lowercase
-text <- tolower(text)
 
-# Custom function to remove specific punctuation
+#' Wordcloud That Displays the Most Frequently Used Word
+#'
+#' @param x The input string we want to process, like removing punctuation
+#'
+#' @returns The output from
+#' @export
+#'
+#' @examples
 remove_custom_punctuation <- function(x) {
   x <- gsub("'", "", x)  # Remove apostrophes
   x <- gsub("[[:punct:]]", "", x)  # Remove other punctuation
   return(x)
 }
+
+# Combine lines into a single string
+text <- paste(text, collapse = "")
+
+# Convert text to lowercase
+text <- tolower(text)
 
 # Apply the custom punctuation removal function
 text <- remove_custom_punctuation(text)
@@ -54,11 +63,44 @@ combined_freq_table <- rbind(freq_table_1gram, freq_table_2gram)
 # Create the word cloud
 wordcloud(words = combined_freq_table$ngrams,
           freq = combined_freq_table$freq,
-          scale = c(4, 0.5),
-          max.words = 200,
+          scale = c(5, 0.3),
+          max.words = 150,
           random.order = FALSE,
           rot.per = 0.35,
           colors = brewer.pal(8, "Paired"),
           family= "serif")
 
+#' Fun Game Using Words from Random Word Generator
+#'
+#' @returns The output from \code{\link{play_word_game}}
+#' @export
+#'
+#' @examples
+play_word_game <- function() {
+  # Generate rando words
+  random_words <- generate_random_words(3, huge_word_list)
+
+  # Show the rando words
+  cat("Here are your random words:\n")
+  print(random_words)
+
+  # Create your own sentence or story
+  cat("\nCreate a sentence or story using these words:\n")
+  user_input <- readline(prompt = "Your sentence or story: ")
+
+  # Simple scoring system (or, ength of the sentence)
+  score <- nchar(user_input)
+  cat("\nYour score:", score, "\n")
+
+  # Play again?
+  play_again <- readline(prompt = "Do you want to play again? (yes/no): ")
+  if (tolower(play_again) == "yes") {
+    play_word_game()
+  } else {
+    cat("Thanks for playing!\n")
+  }
+}
+
+# Start the game
+play_word_game()
 
