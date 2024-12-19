@@ -61,3 +61,4 @@ wordcloud(words = combined_freq_table$ngrams,
           colors = brewer.pal(8, "Paired"),
           family= "serif")
 
+
