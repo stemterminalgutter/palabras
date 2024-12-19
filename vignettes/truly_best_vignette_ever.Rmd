@@ -1,0 +1,19 @@
+---
+title: "truly_best_vignette_ever"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{truly_best_vignette_ever}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(palabras)
+```
