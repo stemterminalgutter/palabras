@@ -27,7 +27,7 @@ file.path(getwd(), "./crime_and_punishment.txt")
 #'
 #' @param x The input string we want to process, like removing punctuation
 #'
-#' @returns The output from
+#' @returns The output from \code{\link{wordcloud()}}
 #' @export
 #'
 #' @examples
