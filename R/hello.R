@@ -1,4 +1,4 @@
-huge_word_list <- readLines("~/Library/CloudStorage/OneDrive-IndianaUniversity/Getting Started in R/Final Biostats Project/words_alpha.txt")
+huge_word_list <- readLines("Your/Path/Here/words_alpha.txt")
 
 file.path(getwd(), "./words_alpha.txt")
 #' Random Word Generator
@@ -18,8 +18,9 @@ random_words <- generate_random_words(1, huge_word_list)
 print(random_words)
 
 
-text <- readLines("~/Library/CloudStorage/OneDrive-IndianaUniversity/Getting Started in R/Final Biostats Project/crime_and_punishment.txt")
+text <- readLines("Your/Path/Here/crime_and_punishment.txt")
 
+file.path(getwd(), "./crime_and_punishment.txt")
 # Combine lines into a single string
 text <- paste(text, collapse = "")
 
