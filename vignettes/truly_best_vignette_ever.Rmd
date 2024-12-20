@@ -1,8 +1,9 @@
 ---
-title: "truly_best_vignette_ever"
+title: "Words, Words, Words"
+author: "Jenna R. Watkins"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{truly_best_vignette_ever}
+  %\VignetteIndexEntry{Words, Words, Words}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

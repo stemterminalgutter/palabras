@@ -1,6 +1,6 @@
 Package: palabras
 Type: Package
-Title: This Package Has Multiple Functions, All Involving the English Language
+Title: Contains Multiple Functions, All Involving the English Language
 Version: 0.1.0
 Authors@R: c(
     person(
@@ -22,3 +22,8 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+Imports: 
+    ngram,
+    RColorBrewer,
+    tm,
+    wordcloud

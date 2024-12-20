@@ -12,7 +12,7 @@ generate_random_words(n, huge_word_list)
 \item{huge_word_list}{}
 }
 \value{
-The output from \code[\link{print}]
+The output from \code{\link{print}}
 }
 \description{
 Random Word Generator
