@@ -1,7 +1,6 @@
 word_path <- file.path(getwd(), "words_alpha.txt")
 huge_word_list <- readLines(word_path)
 
-# file.path(getwd(), "./words_alpha.txt")
 #' Random Word Generator
 #'
 #' @param n The random word
@@ -18,10 +17,10 @@ generate_random_words <- function(n, huge_word_list) {
 random_words <- generate_random_words(1, huge_word_list)
 print(random_words)
 
+crime_and_punishment_path <- file.path(getwd(), "crime_and_punishment.txt")
+text <- readLines(crime_and_punishment_path)
 
-text <- readLines("~/Library/CloudStorage/OneDrive-IndianaUniversity/Getting Started in R/Final Biostats Project/crime_and_punishment.txt")
 
-file.path(getwd(), "./crime_and_punishment.txt")
 library(tm)
 library(wordcloud)
 library(ngram)
