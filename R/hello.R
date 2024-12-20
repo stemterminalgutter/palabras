@@ -1,6 +1,7 @@
-huge_word_list <- readLines("~/Library/CloudStorage/OneDrive-IndianaUniversity/Getting Started in R/Final Biostats Project/words_alpha.txt")
+word_path <- file.path(getwd(), "words_alpha.txt")
+huge_word_list <- readLines(word_path)
 
-file.path(getwd(), "./words_alpha.txt")
+# file.path(getwd(), "./words_alpha.txt")
 #' Random Word Generator
 #'
 #' @param n The random word
