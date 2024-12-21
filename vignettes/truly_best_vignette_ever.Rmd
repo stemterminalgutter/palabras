@@ -76,8 +76,7 @@ purpose of improved commnunication.
 ```{r}
 #random word generator
 
-word_path <- file.path(getwd(), "words_alpha.txt")
-huge_word_list <- readLines(word_path)
+huge_word_list <- readLines("~/palabras.Rcheck/00_pkg_src/palabras/short_list.txt")
 
 generate_random_words <- function(n, huge_word_list) {
   sample(huge_word_list, n, replace = TRUE)
@@ -92,8 +91,7 @@ print(random_words)
 
 #generate a wordcloud to test for frequency of words in writings or fav book
 
-crime_and_punishment_path <- file.path(getwd(), "crime_and_punishment.txt")
-text <- readLines(crime_and_punishment_path)
+text <- readLines("~/palabras.Rcheck/00_pkg_src/palabras/cp_shortened.txt")
 
 library(tm)
 library(wordcloud)
@@ -130,6 +128,8 @@ freq_table_2gram <- get.phrasetable(ng2)
 combined_freq_table <- rbind(freq_table_1gram, freq_table_2gram)
 
 # Create the word cloud
+suppressWarnings({
+  
 wordcloud(words = combined_freq_table$ngrams,
           freq = combined_freq_table$freq,
           scale = c(3, 0.7),
@@ -137,6 +137,7 @@ wordcloud(words = combined_freq_table$ngrams,
           random.order = FALSE,
           rot.per = 0.35,
           colors = brewer.pal(8, "Paired"))
+})
 ```
 
 ```{r}
@@ -178,7 +179,7 @@ play_word_game()
 There are many different directions that this package could go in the future
 that dives deeper into the goals outlined at its inception.
 
-Those include: 
+These include: 
 
 * A dictionary that gives a definition for each word that is randomly generated. 
 A built-in feature could be coded that would prompt the user upon generation of
@@ -204,6 +205,11 @@ agreements across sites would need to be acquired before going down this path.
 the new sentence or story is a high score. More research would have to be
 done for me to determine the best route of "telling" the code each time 
 there is a record of a new high score.
+
+
+
+
+
 
 
 
