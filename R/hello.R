@@ -30,7 +30,7 @@ library(RColorBrewer)
 #'
 #' @param x The input string we want to process, like removing punctuation
 #'
-#' @return The output from \code{\link{wordcloud()}}
+#' @return The output from \code{\link[wordcloud]{wordcloud}}
 #' @export
 #'
 #' @importFrom tm removeWords stopwords
