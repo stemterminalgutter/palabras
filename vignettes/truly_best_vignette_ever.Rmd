@@ -18,3 +18,192 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(palabras)
 ```
+
+## Introduction (Background/Motivation)
+
+Words are all around us -- they are a critical component to any modern human's 
+ability to communicate effectively with those around them. 
+
+There are many people who enjoy the act of speaking, writing, and reading. Those
+same people may find themselves wanting to be inspired by the breadth and depth
+of human language, and in this case, the English language. This package aims
+to appease those individuals who enjoy discovering new words, determining the
+frequency of their usage in written documentation, and for the folks who like 
+to learn, but also aren't sticks in the mud. 
+
+There already exists two separate packages that generate random words 
+(see: `OpenRepGrid` package using the `randomWords()` function). The issue with
+this particular package is that the words generated are fairly simple in nature,
+and contain proper nouns such as names of people. This random word generator 
+uses an open source .txt file that contains almost 500,000 English words
+that have ever existed in the language. This adds a layer of complexity for 
+those folks who would like to undertake a challenge and expand their 
+vocabulary. 
+
+Further, there are many R packages that include games, such as Sudoku or
+Hangman. The latter is a game that is most similar to the `palabras` package, 
+however, `palabras` is different in that it prompts the user to create a 
+sentence or story using three randomly generated words from the same .txt file.
+Points are awarded based on the number of characters used when generating the
+user's response. 
+
+Finally, the `wordcloud` package is fairly straightforward in its usage by 
+counting the frequency of words used in a designated file. The reasons behind
+wanting to create a wordcloud are subjective to the user, but for the purposes
+of this package, it is to determine the frequency of words used in the user's
+written work for the purpose of identifying new words to replace the repeated
+word with. 
+
+The great part about the random word generator and wordcloud is that the path
+is flexible enough that the user can insert whatever file they would like -- 
+making this package accessible and open to anyone's use case.
+
+Together, the various functionalities of the `palabras` package is
+addressing three specific challenges:
+
+* The creation of a random word generator that is designed for a user looking
+for more complex, ornate, and unique words to use in various forms of human
+communication. 
+
+* The creation of a wordcloud that detects the frequency of words for the 
+purpose of improved commnunication. 
+
+* A game that builds upon the random word generator through application. 
+
+
+## Examples
+
+```{r}
+#random word generator
+
+word_path <- file.path(getwd(), "words_alpha.txt")
+huge_word_list <- readLines(word_path)
+
+generate_random_words <- function(n, huge_word_list) {
+  sample(huge_word_list, n, replace = TRUE)
+}
+
+random_words <- generate_random_words(1, huge_word_list)
+print(random_words)
+
+```
+
+```{r}
+
+#generate a wordcloud to test for frequency of words in writings or fav book
+
+crime_and_punishment_path <- file.path(getwd(), "crime_and_punishment.txt")
+text <- readLines(crime_and_punishment_path)
+
+library(tm)
+library(wordcloud)
+library(ngram)
+library(RColorBrewer)
+
+remove_custom_punctuation <- function(x) {
+  x <- gsub("'", "", x)  # Remove apostrophes
+  x <- gsub("[[:punct:]]", "", x)  # Remove other punctuation
+  return(x)
+}
+
+# Combine lines into a single string
+text <- paste(text, collapse = "")
+
+# Convert text to lowercase
+text <- tolower(text)
+
+# Apply the custom punctuation removal function
+text <- remove_custom_punctuation(text)
+
+# Remove stopwords
+text <- removeWords(text, stopwords("en"))
+
+# Generate n-grams
+ng1 <- ngram(text, n = 1)
+ng2 <- ngram(text, n = 2)
+
+# Create frequency tables
+freq_table_1gram <- get.phrasetable(ng1)
+freq_table_2gram <- get.phrasetable(ng2)
+
+# Combine frequency tables
+combined_freq_table <- rbind(freq_table_1gram, freq_table_2gram)
+
+# Create the word cloud
+wordcloud(words = combined_freq_table$ngrams,
+          freq = combined_freq_table$freq,
+          scale = c(3, 0.7),
+          max.words = 100,
+          random.order = FALSE,
+          rot.per = 0.35,
+          colors = brewer.pal(8, "Paired"))
+```
+
+```{r}
+
+#when boredom strikes, play a game to recharge
+
+play_word_game <- function() {
+  # Generate rando words
+  random_words <- generate_random_words(3, huge_word_list)
+
+  # Show the rando words
+  cat("Here are your random words:\n")
+  print(random_words)
+
+  # Create your own sentence or story
+  cat("\nCreate a sentence or story using these words:\n")
+  user_input <- readline(prompt = "Your sentence or story: ")
+
+  # Simple scoring system (or, ength of the sentence)
+  score <- nchar(user_input)
+  cat("\nYour score:", score, "\n")
+
+  # Play again?
+  play_again <- readline(prompt = "Do you want to play again? (yes/no): ")
+  if (tolower(play_again) == "yes") {
+    play_word_game()
+  } else {
+    cat("Thanks for playing!\n")
+  }
+}
+
+# Start the game
+play_word_game()
+
+```
+
+## Future Work and Plans
+
+There are many different directions that this package could go in the future
+that dives deeper into the goals outlined at its inception.
+
+Those include: 
+
+* A dictionary that gives a definition for each word that is randomly generated. 
+A built-in feature could be coded that would prompt the user upon generation of
+the word whether they would like to know the definition. This would require
+finding an open source dictionary, cleaning it so it only leaves the word, and
+then using both files within a newly written code chunk that would load these
+two functionalities together. If a shorter list was required, I could utilize
+the `hash` package to add key-value pairs. 
+
+* The wordcloud could be manipulated in any number of ways to expand the maximum
+number of words visualized, adding titles for clarity to the user, or even 
+creating an interactive wordcloud that uses the `wordcloud2` package where the
+user can hover over the words to see their frequency. The latter method would 
+make the most sense considering this is the function of the package's 
+current use case.
+
+* If of interest, I could also develop a tool that determines the 
+etymology of a randomly generated word. This may require web scraping of 
+existing sites or using etymology APIs. More complex knowledge of use 
+agreements across sites would need to be acquired before going down this path. 
+
+* The game could have a better scoring system that would spit out whether
+the new sentence or story is a high score. More research would have to be
+done for me to determine the best route of "telling" the code each time 
+there is a record of a new high score.
+
+
+

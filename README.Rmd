@@ -28,7 +28,8 @@ The goal of palabras is to be a random word generator. It also can create a
 You can install the development version of palabras like so:
 
 ```
-$ git clone https://github.com/stemterminalgutter/palabras
+git clone https://github.com/stemterminalgutter/palabras.git
+
 ```
 
 ## Example
@@ -46,7 +47,6 @@ generate_random_words <- function(n, huge_word_list) {
 }
 
 random_words <- generate_random_words(1, huge_word_list)
-print(random_words)
 
 ```
 

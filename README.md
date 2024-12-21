@@ -17,7 +17,7 @@ professor.
 
 You can install the development version of palabras like so:
 
-    $ git clone https://github.com/stemterminalgutter/palabras
+    git clone https://github.com/stemterminalgutter/palabras.git
 
 ## Example
 
@@ -34,8 +34,6 @@ generate_random_words <- function(n, huge_word_list) {
 }
 
 random_words <- generate_random_words(1, huge_word_list)
-print(random_words)
-#> [1] "obelisk"
 ```
 
 What is special about this random word generator? Nothing in particular.
@@ -44,5 +42,5 @@ isn’t it great to play around with words you’ve probably never heard of?
 
 ``` r
 print(random_words)
-#> [1] "obelisk"
+#> [1] "spoils"
 ```
