@@ -7,7 +7,7 @@
 play_word_game()
 }
 \value{
-The output from \code{\link{play_word_game}}
+NULL. Primarily used for interactive quality of the game
 }
 \description{
 Fun Game Using Words from Random Word Generator

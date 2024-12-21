@@ -2,16 +2,16 @@
 % Please edit documentation in R/hello.R
 \name{remove_custom_punctuation}
 \alias{remove_custom_punctuation}
-\title{Wordcloud That Displays the Most Frequently Used Word}
+\title{Remove Custom Punctuation}
 \usage{
 remove_custom_punctuation(x)
 }
 \arguments{
-\item{x}{The input string we want to process, like removing punctuation}
+\item{x}{A character vector of text}
 }
 \value{
-The output from \code{\link{wordcloud()}}
+A character vector with apostrophes and other punctuation removed
 }
 \description{
-Wordcloud That Displays the Most Frequently Used Word
+Remove Custom Punctuation
 }
