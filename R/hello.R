@@ -17,6 +17,7 @@ generate_random_words <- function(n, huge_word_list) {
 random_words <- generate_random_words(1, huge_word_list)
 print(random_words)
 
+#wordcloud
 crime_and_punishment_path <- file.path(getwd(), "crime_and_punishment.txt")
 text <- readLines(crime_and_punishment_path)
 
