@@ -26,11 +26,11 @@ library(wordcloud)
 library(ngram)
 library(RColorBrewer)
 
-#' Wordcloud That Displays the Most Frequently Used Word
+#' Remove Custom Punctuation
 #'
-#' @param x The input string we want to process, like removing punctuation
+#' @param x A character vector of text
 #'
-#' @return The output from \code{\link[wordcloud]{wordcloud}}
+#' @return A character vector with apostrophes and other punctuation removed
 #' @export
 #'
 #' @importFrom tm removeWords stopwords
@@ -78,7 +78,7 @@ wordcloud(words = combined_freq_table$ngrams,
 
 #' Fun Game Using Words from Random Word Generator
 #'
-#' @return The output from \code{\link{play_word_game}}
+#' @return NULL. Primarily used for interactive quality of the game
 #' @export
 #'
 #' @examples
