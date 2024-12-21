@@ -25,8 +25,6 @@ library(tm)
 library(wordcloud)
 library(ngram)
 library(RColorBrewer)
-library(roxygen2)
-roxygenise()
 
 #' Remove Custom Punctuation
 #'
